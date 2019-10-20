@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from 'store'
+import store from '@/store'
 
 Vue.use(Router)
 
@@ -17,7 +17,7 @@ export default new Router({
       name: 'result',
       component: loadView('Result'),
       beforeEnter: (to, from, next) => {
-        store.setUserId(this.id);
+        store.setUserId(to.params.id);
         next();
       }
     },

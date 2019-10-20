@@ -9,12 +9,12 @@
 
 <script>
   import axios from 'axios'
-  import store from 'store'
+  import store from '@/store'
   export default {
     name: 'result',
     data() {
       return {
-        id: store.state.id,
+        id: store.state.userId,
         name: Text,
         score: Number,
         life: Number,
