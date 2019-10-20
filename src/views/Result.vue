@@ -9,19 +9,17 @@
 
 <script>
   import axios from 'axios'
+  import store from 'store'
   export default {
     name: 'result',
-    props: {
-      id: Number
-    },
     data() {
       return {
+        id: store.state.id,
         name: Text,
         score: Number,
         life: Number,
         muscle: Number,
         res: null
-
       }
     },
     created() {

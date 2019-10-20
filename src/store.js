@@ -7,5 +7,4 @@ export default{
     if(this.debug) console.log('setUserId triggered .'); // eslint-disable-line no-console
     this.state.userId = id;
   }
-
 }

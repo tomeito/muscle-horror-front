@@ -16,7 +16,10 @@ export default new Router({
       path: '/result/:id',
       name: 'result',
       component: loadView('Result'),
-      props: route => ({id: Number(route.params.id)})
+      beforeEnter: (to, from, next) => {
+        store.setUserId(this.id);
+        next();
+      }
     },
     {
       path: '/ranking',
