@@ -1,12 +1,22 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link v-if="!isNaN(store.state.userId)" :to="{ name: 'result', params: { id: store.state.userId }}" class="result">結果</router-link>
+      <router-link v-show="!isNaN(store.state.userId)" to="/graph" class="graph">グラフ</router-link>
+      <router-link to="/ranking" class="ranking">ランキング</router-link>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+  export default {
+    props: {
+      store: {
+      }
+    }
+  }
+</script>
 
 <style lang="scss">
 @import "./colors.scss";
@@ -26,17 +36,37 @@ body {
   font-family: 'LogoTypeGothic', 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: black;
   background-color: $bg-common;
+  padding: 10px;
+  min-height: calc(100vh - 20px);
 }
 #nav {
-  padding: 30px;
+  text-align: left;
   a {
+    border: 2px solid black;
+    border-bottom: none;
+    &:nth-child(n+2){
+      border-left: none;
+    }
+    display: inline-block;
     font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+    color: black;
+    text-decoration: none;
+    padding: 3px 1em;
+    &.router-link-active {
+      &.result {
+        background-color: $bg-yellow;
+      }
+      &.graph {
+        background-color: $bg-pink;
+      }
+      &.ranking {
+        background-color: $bg-blue;
+      }
+    }
+    &:not(.router-link-active) {
+      background-color: white;
     }
   }
 }
