@@ -14,6 +14,7 @@ export default new Router({
   routes: [
     {
       path: '/result/:id',
+      alias: '/results/:id',
       name: 'result',
       component: loadView('Result'),
       beforeEnter: (to, from, next) => {
