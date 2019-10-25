@@ -9,12 +9,26 @@
 </template>
 
 <style lang="scss">
+@import "./colors.scss";
+
+@font-face {
+  font-family: "LogoTypeGothic";
+  src: url("./assets/LogoTypeGothic.otf") format("opentype"),
+       url("./assets/07LogoTypeGothic7.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'LogoTypeGothic', 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: black;
+  background-color: $bg-common;
 }
 #nav {
   padding: 30px;
