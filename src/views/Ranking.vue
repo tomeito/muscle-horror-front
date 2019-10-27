@@ -1,13 +1,49 @@
 <template>
-  
+    <div class="ranking">
+        <div id="results" v-if="gotData">
+            <div v-bind:key="result.id" v-for="(result, index) in results">
+                {{ index + 1 }}位 {{ result.name }} {{ result.score }}
+            </div>
+        </div>
+        <div class="loading" v-else>
+            <p>Now Loading…</p>
+        </div>
+    </div>
 </template>
 
 <script>
-  export default {
-    name: "Ranking"
+    import axios from 'axios';
+    export default {
+    name: "Ranking",
+    methods: {
+        getVals(){
+            axios.get('https://muscle-horror-api.herokuapp.com/results')
+                .then(response => {
+                    this.results = response.data.result;
+                    this.gotData = true;
+                })
+        }
+    },
+    data(){
+        return {
+            results: Array,
+            gotData: false
+        }
+    },
+    created(){
+        this.getVals();
+    }
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+    @import "../colors.scss";
+    .ranking {
+        text-align: left;
+        background-color: $bg-blue;
+        border: 2px solid black;
+        font-weight: bold;
+        padding: 1em;
+        color: black;
+    }
 </style>
