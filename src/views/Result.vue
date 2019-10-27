@@ -35,12 +35,11 @@
         axios.get('https://muscle-horror-api.herokuapp.com/results/' + this.id)
                 .then(response => {
                   let result = response.data.result;
-                  result.id = this.id;
                   store.setResult(result);
-                  this.name = response.data.result.name;
-                  this.score = response.data.result.score;
-                  this.life = response.data.result.life;
-                  this.analysis = response.data.result.analysis;
+                  this.name = store.state.result.name;
+                  this.score = store.state.result.score;
+                  this.life = store.state.result.life;
+                  this.analysis = store.state.result.analysis;
                   this.res = response;
                   this.gotData = true;
                 })
