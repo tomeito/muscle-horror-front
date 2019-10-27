@@ -19,7 +19,32 @@
         score: Number,
         life: Number,
         muscle: Number,
-        res: null
+        res: null,
+        gotData: false
+      }
+    },
+    methods: {
+      getVals(){
+        axios.get('https://muscle-horror-api.herokuapp.com/results/' + this.id)
+                .then(response => {
+                  let result = response.data.result;
+                  store.setResult(result);
+                  this.name = store.state.result.name;
+                  this.score = store.state.result.score;
+                  this.life = store.state.result.life;
+                  this.analysis = store.state.result.analysis;
+                  this.res = response;
+                  this.gotData = true;
+                })
+      },
+      fiveStars(star) {
+        if (0 <= star && star <= 5) {
+          let str = "";
+          str += "★".repeat(star) + "☆".repeat(5 - star);
+          return str;
+        }else {
+          return this.fiveStars(0);
+        }
       }
     },
     created() {
