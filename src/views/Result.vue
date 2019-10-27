@@ -1,9 +1,16 @@
 <template>
   <div class="result">
-    <p>name:{{ name }}</p>
-    <p>score:{{ score }}</p>
-    <p>life:{{ life }}</p>
-    <p>muscle:{{ muscle }}</p>
+    <div id="result" v-if="gotData">
+      <div id="title"><span id="team">{{ name }}</span>の結果</div>
+      <p v-if="!isNaN(analysis.muscle)">筋肉量・・・・{{ fiveStars(analysis.muscle) }}</p>
+      <p v-if="!isNaN(analysis.speed)">速度・・・・{{ fiveStars(analysis.speed) }}</p>
+      <p v-if="!isNaN(analysis.affinity)">相性・・・・{{ fiveStars(analysis.affinity) }}</p>
+      <p v-if="!isNaN(analysis.exploratory)">探査能力・・・・{{ fiveStars(analysis.exploratory) }}</p>
+      <p>ライフ・・・・{{ "❤️".repeat(life) }}</p>
+    </div>
+    <div class="loading" v-else>
+      <p>Now Loading…</p>
+    </div>
   </div>
 </template>
 
@@ -48,18 +55,29 @@
       }
     },
     created() {
-      axios.get('https://muscle-horror-api.herokuapp.com/results/' + this.id)
-        .then(response => {
-          this.name = response.data.result.name;
-          this.score = response.data.result.score;
-          this.life = response.data.result.life;
-          this.muscle = response.data.result.muscle;
-          this.res = response;
-        })
+      this.getVals();
     }
   };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  $bg-yellow: #FFC700;
+  .result {
+    background-color: $bg-yellow;
+    border: 2px solid black;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 1em;
 
+    #title {
+      margin: 1em 0;
+
+      #team {
+        border: 2px solid black;
+        background-color: white;
+        padding: 0.5em;
+        margin-right: 5px;
+      }
+    }
+  }
 </style>

@@ -18,5 +18,8 @@ export default{
   setUserId (id) {
     if(this.debug) console.log('setUserId triggered .'); // eslint-disable-line no-console
     this.state.userId = id;
+  },
+  setResult (result) {
+    this.state.result = result;
   }
 }
