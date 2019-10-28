@@ -35,14 +35,18 @@
         axios.get('https://muscle-horror-api.herokuapp.com/results/' + this.id)
                 .then(response => {
                   let result = response.data.result;
+                  result.id = this.id;
                   store.setResult(result);
-                  this.name = store.state.result.name;
-                  this.score = store.state.result.score;
-                  this.life = store.state.result.life;
-                  this.analysis = store.state.result.analysis;
                   this.res = response;
-                  this.gotData = true;
+                  this.setVals();
                 })
+      },
+      setVals(){
+        this.name = store.state.result.name;
+        this.score = store.state.result.score;
+        this.life = store.state.result.life;
+        this.analysis = store.state.result.analysis;
+        this.gotData = true;
       },
       fiveStars(star) {
         if (0 <= star && star <= 5) {
@@ -55,7 +59,11 @@
       }
     },
     created() {
-      this.getVals();
+      if(this.id !== store.state.result.id) {
+        this.getVals();
+      }else{
+        this.setVals();
+      }
     }
   };
 </script>
