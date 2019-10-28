@@ -45,6 +45,7 @@
     .radar {
       display: inline-block;
       background-color: white;
+      border: 2px solid black;
       * {
         max-width: 100%;
       }
