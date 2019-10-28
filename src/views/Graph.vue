@@ -7,8 +7,14 @@
 
 <script>
   import radar from '@/components/radar'
+  import store from '@/store'
   export default {
     name: "Graph",
+    data(){
+      return {
+        "name": store.state.result.name
+      }
+    },
     components: {
       radar
     }
