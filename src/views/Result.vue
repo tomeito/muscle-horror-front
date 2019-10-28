@@ -25,19 +25,27 @@
         name: Text,
         score: Number,
         life: Number,
-        muscle: Number,
+        analysis: {
+          muscle: Number,
+          speed: Number,
+          affinity: Number,
+          exploratory: Number
+        },
         res: null,
         gotData: false
       }
     },
     methods: {
       getVals(){
+        if(store.debug) console.log("getVals triggered");
         axios.get('https://muscle-horror-api.herokuapp.com/results/' + this.id)
                 .then(response => {
                   let result = response.data.result;
                   result.id = this.id;
                   store.setResult(result);
                   this.res = response;
+                }).then(()=>{
+                  this.setVals();
                 })
       },
       setVals(){
@@ -58,10 +66,20 @@
       }
     },
     created() {
-      if(this.id !== store.state.result.id) this.getVals();
-      this.setVals();
+      let ls = store.loadLocal(("result"));
+      if( ls && ls.id === this.id){
+        store.setResult(ls);
+      }
+      if(store.state.result && store.state.result.id !== this.id){
+        this.getVals();
+      }else{
+        this.setVals();
+      }
     }
   };
+  window.onbeforeunload = function(){
+    store.storeLocal("result", store.state.result);
+  }
 </script>
 
 <style lang="scss" scoped>

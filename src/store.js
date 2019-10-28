@@ -21,6 +21,18 @@ export default{
     this.state.userId = id;
   },
   setResult (result) {
+    if(this.debug) console.log('setResult triggered.');
     this.state.result = result;
+    this.storeLocal(result);
+  },
+  storeLocal(name, obj){
+    this.destroyLocal(name);
+    localStorage.setItem(name, JSON.stringify(obj));
+  },
+  loadLocal(name){
+    return JSON.parse(localStorage.getItem(name));
+  },
+  destroyLocal(name){
+    localStorage.removeItem(name);
   }
 }
