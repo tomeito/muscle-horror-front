@@ -24,12 +24,13 @@
     font-weight: bold;
     text-align: left;
     padding-left: 1em;
+    padding-bottom: 1em;
 
     #title {
       margin: 1em 0;
 
       #team {
-        border: 1px solid black;
+        border: 2px solid black;
         background-color: white;
         padding: 0.5em;
         margin-right: 5px;
