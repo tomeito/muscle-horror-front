@@ -3,6 +3,7 @@ export default{
   state : {
     userId: Number,
     result: {
+      id: Number,
       name: Text,
       difficulty: Text,
       score: Number,
