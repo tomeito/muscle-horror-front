@@ -38,7 +38,6 @@
                   result.id = this.id;
                   store.setResult(result);
                   this.res = response;
-                  this.setVals();
                 })
       },
       setVals(){
@@ -59,11 +58,8 @@
       }
     },
     created() {
-      if(this.id !== store.state.result.id) {
-        this.getVals();
-      }else{
-        this.setVals();
-      }
+      if(this.id !== store.state.result.id) this.getVals();
+      this.setVals();
     }
   };
 </script>
