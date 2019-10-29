@@ -73,7 +73,7 @@
       }
       if(store.state.result && store.state.result.id !== this.id){
         this.getVals();
-      }else if(typeof store.state.result.id !== "number"){
+      }else if(store.state.result != null || typeof store.state.result.id !== "number"){
         store.loadLocalResult();
         this.setVals();
       }else{

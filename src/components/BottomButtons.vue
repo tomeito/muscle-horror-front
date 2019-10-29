@@ -1,7 +1,7 @@
 <template>
     <div class="buttons">
         <a :href="url" id="tweet" class="tweet" target="_blank" rel="nofollow noopener">ツイートする</a>
-        <a href="https://docs.google.com/forms/u/0/" class="enquete" target="_blank" rel="nofollow noopener">アンケートにご協力下さい</a>
+        <a href="https://docs.google.com/forms/u/0/" class="enquete" target="_blank" rel="nofollow noopener">アンケート</a>
     </div>
 </template>
 
