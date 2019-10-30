@@ -26,17 +26,16 @@
 
   .graph{
     background-color: $bg-pink;
-    border: 2px solid black;
+    border: 3px solid black;
     font-weight: bold;
     text-align: left;
-    padding-left: 1em;
-    padding-bottom: 1em;
+    padding: 0 1em 1em 1em;
 
     #title {
       margin: 1em 0;
 
       #team {
-        border: 2px solid black;
+        border: 3px solid black;
         background-color: white;
         padding: 0.5em;
         margin-right: 5px;
@@ -44,12 +43,8 @@
     }
 
     .radar {
-      display: inline-block;
       background-color: white;
-      border: 2px solid black;
-      * {
-        max-width: 100%;
-      }
+      border: 3px solid black;
     }
   }
 </style>
