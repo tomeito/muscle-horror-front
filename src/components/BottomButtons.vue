@@ -27,13 +27,12 @@
         margin: 1em 0;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-column-gap: 0.5em;
+        grid-column-gap: 1em;
         a {
-            width: 100%;
             padding: 1.5em 0;
             color: black;
             background-color: white;
-            border: 2px solid black;
+            border: 3px solid black;
             display: flex;
             justify-content: center;
             align-items: center;

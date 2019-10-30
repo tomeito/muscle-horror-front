@@ -41,9 +41,17 @@
     .ranking {
         text-align: left;
         background-color: $bg-blue;
-        border: 2px solid black;
+        border: 3px solid black;
         font-weight: bold;
         padding: 1em;
         color: black;
+        ul#results{
+            margin: 0;
+            padding-left: 1em;
+            li {
+                list-style: none;
+                margin-bottom: 0.2em;
+            }
+        }
     }
 </style>

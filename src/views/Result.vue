@@ -90,7 +90,7 @@
   $bg-yellow: #FFC700;
   .result {
     background-color: $bg-yellow;
-    border: 2px solid black;
+    border: 3px solid black;
     font-weight: bold;
     text-align: left;
     padding-left: 1em;
@@ -99,7 +99,7 @@
       margin: 1em 0;
 
       #team {
-        border: 2px solid black;
+        border: 3px solid black;
         background-color: white;
         padding: 0.5em;
         margin-right: 5px;

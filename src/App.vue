@@ -50,11 +50,15 @@ body {
   background-color: $bg-common;
   padding: 10px;
   min-height: calc(100vh - 20px);
+
+  .header_logo {
+    width: 100%;
+  }
 }
 #nav {
   text-align: left;
   a {
-    border: 2px solid black;
+    border: 3px solid black;
     border-bottom: none;
     &:nth-child(n+2){
       border-left: none;
@@ -64,6 +68,7 @@ body {
     color: black;
     text-decoration: none;
     padding: 3px 1em;
+    transition: 0.25s ease-in-out;
     &.router-link-active {
       &.result {
         background-color: $bg-yellow;
@@ -74,10 +79,21 @@ body {
       &.ranking {
         background-color: $bg-blue;
       }
+      &.recents {
+        background-color: $bg-lightgreen;
+      }
     }
     &:not(.router-link-active) {
       background-color: white;
     }
+  }
+}
+
+
+@media screen and (min-width: 850px ){
+  #app .header_logo {
+    max-height: 180px;
+    object-fit: scale-down;
   }
 }
 </style>
