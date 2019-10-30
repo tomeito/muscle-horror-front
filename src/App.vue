@@ -5,14 +5,24 @@
       <router-link v-if="!isNaN(store.state.userId)" to="/graph" class="graph">グラフ</router-link>
       <router-link to="/ranking" class="ranking">ランキング</router-link>
     </div>
-    <router-view/>
+    <router-view @result-changed="resultChanged" />
+    <bottom-buttons :result="result"></bottom-buttons>
   </div>
 </template>
 
 <script>
+  import BottomButtons from "./components/BottomButtons";
   export default {
-    props: {
-      store: {
+    components: {BottomButtons},
+    props:["store"],
+    data(){
+      return {
+        result: this.store.state.result
+      }
+    },
+    methods: {
+      resultChanged: function(){
+        this.result = this.store.state.result;
       }
     }
   }

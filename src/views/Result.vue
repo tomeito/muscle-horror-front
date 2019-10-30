@@ -54,6 +54,7 @@
         this.life = store.state.result.life;
         this.analysis = store.state.result.analysis;
         this.gotData = true;
+        this.$emit("result-changed");
       },
       fiveStars(star) {
         if (0 <= star && star <= 5) {
@@ -72,6 +73,9 @@
       }
       if(store.state.result && store.state.result.id !== this.id){
         this.getVals();
+      }else if(store.state.result != null || typeof store.state.result.id !== "number"){
+        store.loadLocalResult();
+        this.setVals();
       }else{
         this.setVals();
       }

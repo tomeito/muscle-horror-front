@@ -25,6 +25,9 @@ export default{
     this.state.result = result;
     this.storeLocal(result);
   },
+  loadLocalResult(){
+    this.setResult(this.loadLocal("result"));
+  },
   storeLocal(name, obj){
     this.destroyLocal(name);
     localStorage.setItem(name, JSON.stringify(obj));
