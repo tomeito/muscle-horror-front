@@ -25,24 +25,38 @@
         name: Text,
         score: Number,
         life: Number,
-        muscle: Number,
+        analysis: {
+          muscle: Number,
+          speed: Number,
+          affinity: Number,
+          exploratory: Number
+        },
         res: null,
         gotData: false
       }
     },
     methods: {
       getVals(){
+        if(store.debug) console.log("getVals triggered");
         axios.get('https://muscle-horror-api.herokuapp.com/results/' + this.id)
                 .then(response => {
                   let result = response.data.result;
                   store.setResult(result);
-                  this.name = store.state.result.name;
-                  this.score = store.state.result.score;
-                  this.life = store.state.result.life;
-                  this.analysis = store.state.result.analysis;
+                  console.log(store.state.result);
                   this.res = response;
-                  this.gotData = true;
-                })
+                }).then(()=>{
+                  this.setVals();
+                }).catch(()=>{
+
+        })
+      },
+      setVals(){
+        this.name = store.state.result.name;
+        this.score = store.state.result.score;
+        this.life = store.state.result.life;
+        this.analysis = store.state.result.analysis;
+        this.gotData = true;
+        this.$emit("result-changed");
       },
       fiveStars(star) {
         if (0 <= star && star <= 5) {
@@ -55,16 +69,32 @@
       }
     },
     created() {
-      this.getVals();
+      let ls = store.loadLocal(("result"));
+      if( ls && ls.id === this.id){
+        store.setResult(ls);
+      }
+      if(store.state.result && store.state.result.id !== this.id){
+        this.getVals();
+      }else if(store.state.result == null || typeof store.state.result.id !== "number"){
+        if(store.loadLocal("result").id === this.id) {
+          store.loadLocalResult();
+        }
+        this.setVals();
+      }else{
+        this.setVals();
+      }
     }
   };
+  window.onbeforeunload = function(){
+    store.storeLocal("result", store.state.result);
+  }
 </script>
 
 <style lang="scss" scoped>
   $bg-yellow: #FFC700;
   .result {
     background-color: $bg-yellow;
-    border: 2px solid black;
+    border: 3px solid black;
     font-weight: bold;
     text-align: left;
     padding-left: 1em;
@@ -73,7 +103,7 @@
       margin: 1em 0;
 
       #team {
-        border: 2px solid black;
+        border: 3px solid black;
         background-color: white;
         padding: 0.5em;
         margin-right: 5px;

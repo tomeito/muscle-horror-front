@@ -31,6 +31,12 @@ export default new Router({
       path: '/graph',
       name: 'graph',
       component: loadView('Graph')
+    },
+    {
+      path: '/recents',
+      alias: '/recent',
+      name: "recent",
+      component: loadView('Recents')
     }
   ]
 })
