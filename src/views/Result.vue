@@ -37,13 +37,13 @@
     },
     methods: {
       getVals(){
-        if(store.debug) console.log("getVals triggered");
+        if(store.debug) console.log("getVals triggered"); // eslint-disable-line no-console
         axios.get('https://muscle-horror-api.herokuapp.com/results/' + this.id)
                 .then(response => {
                   let result = response.data.result;
                   result.id = this.id;
                   store.setResult(result);
-                  console.log(store.state.result);
+                  if(store.debug) console.log(store.state.result); // eslint-disable-line no-console
                   this.res = response;
                 }).then(()=>{
                   this.setVals();
@@ -77,7 +77,8 @@
       if(store.state.result && store.state.result.id !== this.id){
         this.getVals();
       }else if(store.state.result == null || typeof store.state.result.id !== "number"){
-        if(store.loadLocal("result").id === this.id) {
+        const localStorageResult = store.loadLocal("result");
+        if( localStorageResult != null && localStorage.id === this.id) {
           store.loadLocalResult();
         }
         this.setVals();
