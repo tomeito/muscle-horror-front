@@ -5,7 +5,8 @@
       <router-link v-if="!isNaN(store.state.userId)" :to="{ name: 'result', params: { id: store.state.userId }}" class="result">結果</router-link>
       <router-link v-if="!isNaN(store.state.userId)" to="/graph" class="graph">グラフ</router-link>
       <router-link to="/ranking" class="ranking">ランキング</router-link>
-    </div>
+      <router-link to="/recents" class="recents">最近の結果</router-link>
+    </nav>
     <router-view @result-changed="resultChanged" />
     <bottom-buttons :result="result"></bottom-buttons>
   </div>
