@@ -32,7 +32,7 @@ export default new Router({
       name: 'graph',
       component: loadView('Graph'),
       beforeEnter: (to, from, next) => {
-        if(typeof store.state.result.id !== 'number') {
+        if(store.state.result.id == null || typeof store.state.result.id === 'function') {
           next('/recents');
         } else {
           next();
