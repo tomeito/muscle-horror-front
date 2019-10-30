@@ -30,13 +30,25 @@ export default new Router({
     {
       path: '/graph',
       name: 'graph',
-      component: loadView('Graph')
+      component: loadView('Graph'),
+      beforeEnter: (to, from, next) => {
+        if(typeof store.state.result.id !== 'number') {
+          next('/recents');
+        } else {
+          next();
+        }
+      }
     },
     {
       path: '/recents',
       alias: '/recent',
       name: "recent",
       component: loadView('Recents')
+    },
+
+    {
+      path: '/*',
+      redirect: '/recents'
     }
   ]
 })
