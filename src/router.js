@@ -32,8 +32,6 @@ export default new Router({
       name: 'graph',
       component: loadView('Graph'),
       beforeEnter: (to, from, next) => {
-        console.log(store.state.result);
-        console.log(typeof store.state.result.id)
         if(store.state.result.id == null || typeof store.state.result.id === 'function') {
           next('/recents');
         } else {
