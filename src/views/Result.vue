@@ -43,10 +43,13 @@
                   let result = response.data.result;
                   result.id = this.id;
                   store.setResult(result);
+                  console.log(store.state.result);
                   this.res = response;
                 }).then(()=>{
                   this.setVals();
-                })
+                }).catch(()=>{
+
+        })
       },
       setVals(){
         this.name = store.state.result.name;
@@ -73,8 +76,10 @@
       }
       if(store.state.result && store.state.result.id !== this.id){
         this.getVals();
-      }else if(store.state.result != null || typeof store.state.result.id !== "number"){
-        store.loadLocalResult();
+      }else if(store.state.result == null || typeof store.state.result.id !== "number"){
+        if(store.loadLocal("result").id === this.id) {
+          store.loadLocalResult();
+        }
         this.setVals();
       }else{
         this.setVals();

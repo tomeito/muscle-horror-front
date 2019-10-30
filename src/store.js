@@ -26,7 +26,8 @@ export default{
     this.storeLocal(result);
   },
   loadLocalResult(){
-    this.setResult(this.loadLocal("result"));
+    const localStorageResult = this.loadLocal("result");
+    if (localStorageResult != null) this.setResult(localStorageResult);
   },
   storeLocal(name, obj){
     this.destroyLocal(name);
