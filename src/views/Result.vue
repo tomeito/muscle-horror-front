@@ -42,7 +42,6 @@
                 .then(response => {
                   let result = response.data.result;
                   store.setResult(result);
-                  console.log(store.state.result);
                   this.res = response;
                 }).then(()=>{
                   this.setVals();
