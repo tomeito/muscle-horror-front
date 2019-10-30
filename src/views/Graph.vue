@@ -17,6 +17,12 @@
     },
     components: {
       radar
+    },
+  }
+  
+  window.onbeforeunload = function (e) {
+    if(window.location.pathname === '/graph') {
+      return false
     }
   }
 </script>
